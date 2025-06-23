@@ -70,7 +70,20 @@ export async function fetchAllResearchersDetails(): Promise<
           "learning_programs.name as program_name",
           db.fn("GROUP_CONCAT", ["student_status.name"]).as("status"),
         ])
-        .groupBy(["student_id"])
+        .groupBy([
+          "student_id",
+          "student_name",
+          "student_nation_phone",
+          "student_national_n",
+          "student_phone",
+          "student_code",
+          "student_registered_at",
+          "advisor_name",
+          "advisor_degree",
+          "specialization_name",
+          "department_name",
+          "program_name",
+        ])
         .execute();
       return data.map((re) => {
         return {
@@ -162,7 +175,20 @@ export async function viewReseacher(
       "learning_programs.name as program_name",
       db.fn("GROUP_CONCAT", ["student_status.name"]).as("status"),
     ])
-    .groupBy(["student_id"])
+    .groupBy([
+      "student_id",
+      "student_name",
+      "student_nation_phone",
+      "student_national_n",
+      "student_phone",
+      "student_code",
+      "student_registered_at",
+      "advisor_name",
+      "advisor_degree",
+      "specialization_name",
+      "department_name",
+      "program_name",
+    ])
     .where("students.id", "=", id)
     .executeTakeFirst();
 
