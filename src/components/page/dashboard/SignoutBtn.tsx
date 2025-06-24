@@ -8,7 +8,7 @@ export default function SignoutBtn() {
   return (
     <Button onClick={async () => {
         await revalidate("/", "*");
-        signOut()
+        signOut({redirect: false})
     }} className="bg-white hover:bg-red-500 text-gray-800 hover:text-white font-bold border border-gray-300 flex items-center justify-center gap-3 relative overflow-hidden group">
       تسجيل خروج
     </Button>
