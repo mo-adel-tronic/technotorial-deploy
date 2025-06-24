@@ -22,7 +22,7 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(RoutesName.LOGIN, request.url));
   }
   if (pathname.startsWith("/api") && !pathname.startsWith("/api/auth")) {
-    const key = request.headers.get("api_key");
+    const key = request.headers.get("x-api-key");
     if (!key) {
       return NextResponse.json("invalid request");
     }
