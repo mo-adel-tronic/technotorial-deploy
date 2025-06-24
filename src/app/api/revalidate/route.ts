@@ -16,28 +16,28 @@ export async function POST(request: Request) {
     );
   }
   try {
-    if(path) {
-      revalidatePath(path, 'layout')
+    if (path) {
+      await revalidatePath(path, 'layout');
     }
     if (tag) {
       if (tag == '*') {
-        for(const t of Object.values(RevalidateKey)) {
-          revalidateTag(t)
+        for (const t of Object.values(RevalidateKey)) {
+          await revalidateTag(t);
         }
       } else {
-        revalidateTag(tag)
+        await revalidateTag(tag);
       }
     }
     return NextResponse.json({
-        message: "Cache revalidated",
-        data: null,
-        error: false
+      message: "Cache revalidated",
+      data: null,
+      error: false
     });
   } catch (error) {
     return NextResponse.json({
       message: "revalidated error: " + (error instanceof Error ? error.message : "Unknown error"),
       data: null,
       error: true
-    }, {status: 500})
+    }, { status: 500 });
   }
 }

@@ -7,15 +7,14 @@ import { appCache } from "@/lib/AppCache";
 import { UpdateResult } from "kysely";
 
 export async function fetchAllTeachers(): Promise<Teacher[] | undefined> {
-  // const cachedData = appCache(
-  //   async () => {
-  //     return await db.selectFrom("teachers").selectAll().orderBy('t_order').execute();
-  //   },
-  //   [RevalidateKey.AllTeachers],
-  //   { revalidate: 1800, tags: [RevalidateKey.AllTeachers] }
-  // );
-  // return cachedData();
-  return await db.selectFrom("teachers").selectAll().orderBy('t_order').execute();
+  const cachedData = appCache(
+    async () => {
+      return await db.selectFrom("teachers").selectAll().orderBy('t_order').execute();
+    },
+    [RevalidateKey.AllTeachers],
+    { revalidate: 1800, tags: [RevalidateKey.AllTeachers] }
+  );
+  return cachedData();
 }
 
 export async function findTeacherById(
