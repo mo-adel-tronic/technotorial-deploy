@@ -5,16 +5,29 @@ import { useState } from "react";
 import { MicrosoftLogo } from "./MicrosoftLogo";
 import { signIn } from "next-auth/react";
 import { RoutesName } from "@/constants/RoutesName";
+import { useRevalidate } from "@/hooks/revalidate";
+import { useRouter } from "next/router";
 
 export default function LoginButton() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { revalidate } = useRevalidate();
+  const router = useRouter();
 
   const handleMicrosoftLogin = async () => {
     setIsLoading(true);
-    await signIn('azure-ad',{
-      redirect: true,
+
+    // Use redirect: false for AJAX login
+    const result = await signIn('azure-ad', {
+      redirect: false,
       callbackUrl: RoutesName.DASHBOARD
-    })
+    });
+
+    if (result?.ok) {
+      // Revalidate the dashboard (or any relevant page)
+      await revalidate("/", "*");
+      // Redirect manually
+      router.push(RoutesName.DASHBOARD);
+    }
     setIsLoading(false);
   };
   return (
