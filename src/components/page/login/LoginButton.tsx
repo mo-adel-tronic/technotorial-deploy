@@ -6,7 +6,7 @@ import { MicrosoftLogo } from "./MicrosoftLogo";
 import { signIn } from "next-auth/react";
 import { RoutesName } from "@/constants/RoutesName";
 import { useRevalidate } from "@/hooks/revalidate";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function LoginButton() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
