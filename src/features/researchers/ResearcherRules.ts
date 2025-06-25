@@ -4,6 +4,7 @@ import { findTeacherById } from "../teachers/TeacherRepo";
 import { fetchDepartment } from "../department/DepartmentRepo";
 import { fetchSpecialization } from "../department/SpecializationRepo";
 import { fetchProgram } from "../programs/ProgramsRepo";
+import { semesterTerm } from "@/db/types";
 export const ResearcherSchema = z.object({
   name: z
     .string()
@@ -21,12 +22,14 @@ export const ResearcherSchema = z.object({
     }),
     registered_at: z
     .string()
-    .refine(
-      (val) => !val || /^\d{4}-\d{2}-\d{2}$/.test(val),
-      { message: "يجب أن يتم اختيار تاريخ صحيح (YYYY-MM-DD)" }
-    )
     .nullable()
-    .optional(),
+    .optional()
+    .refine((value) => {
+      if (!value) return true; // Allow null/undefined values
+      return semesterTerm.some(term => value.includes(term));
+    }, {
+      message: "يجب أن يحتوي القيمة على فصل دراسي صحيح (صيفي، خريفي، ربيعي)"
+    }),
   national_n: z
     .string()
     .min(1, { message: "يجب أن لا يقل الرقم القومي عن رقم واحد" })

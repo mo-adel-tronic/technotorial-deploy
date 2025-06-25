@@ -106,7 +106,6 @@ export default function getTableCol<T extends { id?: number }>({
             <div className="flex items-center gap-2">
               <span className="font-medium">
                 {Array.isArray(row.getValue(field.accessKey)) ? (row.getValue(field.accessKey) as {k: string, color: string}[]).map((item, i) => {
-                  console.log(item)
                   return <Badge key={i} className={`${item.color} font-bold mr-2`}>{item.k}</Badge>
                 }) : row.getValue(field.accessKey)}
               </span>

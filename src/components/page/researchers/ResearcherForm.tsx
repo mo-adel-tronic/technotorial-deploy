@@ -266,7 +266,6 @@ export default function ResearcherForm({
                 <FormLabel>{pageData.registeredField.label}</FormLabel>
                 <FormControl>
                   <Input
-                    type="date"
                     placeholder={pageData.registeredField.placeholder}
                     value={field.value ?? ""}
                     onChange={field.onChange}
