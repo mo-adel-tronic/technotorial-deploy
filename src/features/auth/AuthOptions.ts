@@ -62,7 +62,7 @@ type Token = {
       return {
         ...token,
         accessToken: refreshedTokens.id_token,
-        accessTokenExpires: Date.now() + refreshedTokens.expires_in * 1000,
+        accessTokenExpires: Date.now() + refreshedTokens.expires_in * 10000,
         refreshToken: refreshedTokens.refresh_token ?? token.refreshToken,
       };
     } catch (error) {
@@ -103,7 +103,7 @@ export const authOptions: NextAuthOptions = {
           ...token,
           accessToken: account.id_token,
           accessTokenExpires: account?.expires_at
-            ? account.expires_at * 1000
+            ? account.expires_at * 10000
             : 0,
           refreshToken: account.refresh_token,
           user,

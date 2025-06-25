@@ -11,7 +11,7 @@ export default async function TeacherView({params} : {params: Promise<{teacherid
     <>
     <HeaderBanner title='بيانات العضو' linkCreate={{
             text: 'العودة إلى إدارة عضو هيئة التدريس',
-            href: RoutesName.DEPARTMENT
+            href: RoutesName.TEACHER
         }} />
 
     {
