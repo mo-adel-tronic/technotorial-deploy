@@ -16,6 +16,19 @@ export default function RootRender({
       }, []);
       if (w == 0) {
         return <html>
+            <head>
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                      "@context": "https://technotorial.com/",
+                      "@type": "WebSite",
+                      "name": "Techno Torial منصة إدارة الدرسات العليا بقسم تكنولوجيا التعليم كلية التربية النوعية جامعة عين شمس",
+                      "url": "https://technotorial.com/"
+                    })
+                  }}
+                />
+            </head>
             <body>
                 <LoadingPage />
             </body>
@@ -23,12 +36,38 @@ export default function RootRender({
       }
   if (w < 768) {
     return <html>
+        <head>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://technotorial.com/",
+                  "@type": "WebSite",
+                  "name": "Techno Torial منصة إدارة الدرسات العليا بقسم تكنولوجيا التعليم كلية التربية النوعية جامعة عين شمس",
+                  "url": "https://technotorial.com/"
+                })
+              }}
+            />
+        </head>
         <body>
         <ErrorBoundary error={new Error('مقاس الشاشة لابد أن يكون أكبر من 768')} />
         </body>
     </html>
   } else {
     return <html lang="ar" dir="rtl">
+    <head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://technotorial.com/",
+            "@type": "WebSite",
+            "name": "Techno Torial منصة إدارة الدرسات العليا بقسم تكنولوجيا التعليم كلية التربية النوعية جامعة عين شمس",
+            "url": "https://technotorial.com/"
+          })
+        }}
+      />
+    </head>
     <body className="font-text min-h-svh flex flex-col justify-between">
       {children}
       <Toaster toastOptions={{
