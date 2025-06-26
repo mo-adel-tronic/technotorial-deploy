@@ -21,7 +21,7 @@ export default function RootRender({
                   type="application/ld+json"
                   dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
-                      "@context": "https://technotorial.com/",
+                      "@context": "https://schema.org",
                       "@type": "WebSite",
                       "name": "Techno Torial منصة إدارة الدرسات العليا بقسم تكنولوجيا التعليم كلية التربية النوعية جامعة عين شمس",
                       "url": "https://technotorial.com/"
@@ -41,7 +41,7 @@ export default function RootRender({
               type="application/ld+json"
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify({
-                  "@context": "https://technotorial.com/",
+                  "@context": "https://schema.org",
                   "@type": "WebSite",
                   "name": "Techno Torial منصة إدارة الدرسات العليا بقسم تكنولوجيا التعليم كلية التربية النوعية جامعة عين شمس",
                   "url": "https://technotorial.com/"
@@ -60,7 +60,7 @@ export default function RootRender({
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "https://technotorial.com/",
+            "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Techno Torial منصة إدارة الدرسات العليا بقسم تكنولوجيا التعليم كلية التربية النوعية جامعة عين شمس",
             "url": "https://technotorial.com/"
