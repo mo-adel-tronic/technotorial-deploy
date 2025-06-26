@@ -2,7 +2,7 @@ export enum ImageSrc {
   //! Global Images -------------------------------
   LOGO = "/images/globals/logo.png",
   LOGO2 = "/images/globals/logo2.png",
-  LOGO_ICON = "/favicon.ICO",
+  LOGO_ICON = "/favicon.ico",
   FALLBACK = "/images/globals/fallback.png",
   BLUR_PLACEHOLDER = "/images/globals/blur-placeholder.png",
 
