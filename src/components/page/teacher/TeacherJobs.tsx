@@ -81,6 +81,7 @@ export default function TeacherJobsFields({ teacherId }: Props) {
                   {/* First Select */}
                   <div className="relative">
                     <select
+                      id="teacherJobTitle"
                       value={currentObj ? (currentObj.job ?? "اختر وظيفة العضو") : sp.job}
                       onChange={(e) => {
                         if (currentObj)

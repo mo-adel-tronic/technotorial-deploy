@@ -79,7 +79,7 @@ export default function ClassroomStudentStatusFields({
                       id="studentName"
                       value={
                         currentObj
-                          ? (currentObj.student_id == 0 ? "اختر اسم الطالب" : currentObj.student_id)
+                          ? (currentObj.student_id == 0 ? "اختر اسم الطالب" : `${currentObj.student_id}|${currentObj.studentName}`)
                           : sp.student_id
                       }
                       onChange={(e) => {
