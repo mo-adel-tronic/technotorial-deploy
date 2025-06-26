@@ -2,6 +2,7 @@
 
 import { db } from "@/db/conn";
 import { Subjects } from "@/db/types";
+import { sql } from "kysely";
 
 export async function fetchSubjectById(
   id: number
@@ -20,6 +21,32 @@ export async function fetchSubjectByReq(
   const data = await db
     .selectFrom("subjects")
     .selectAll()
+    .where("require_id", "=", requireId)
+    .execute();
+  return data;
+}
+export async function fetchSubjectByReqWithFullCode(
+  requireId: number
+): Promise<(Subjects)[] | undefined> {
+  const data = await db
+    .selectFrom("subjects")
+    .innerJoin('program_requirements', 'subjects.require_id', 'program_requirements.id')
+    .innerJoin('learning_programs', 'program_requirements.program_id', 'learning_programs.id')
+    .innerJoin("department", 'learning_programs.depart_id', 'department.id')
+    .select([
+      "subjects.id as id",
+      'subjects.name as name',
+      'subjects.theoretical_hour as theoretical_hour',
+      'subjects.practical_hour as practical_hour',
+      'subjects.credit_hour as credit_hour',
+      'subjects.theoretical_exam_duration as theoretical_exam_duration',
+      'subjects.practical_exam_duration as practical_exam_duration',
+      'subjects.theoretical_degree as theoretical_degree',
+      'subjects.practical_degree as practical_degree',
+      'subjects.activity_degree as activity_degree',
+      'subjects.require_id as require_id',
+      sql<string>`CONCAT(department.depart_code, '.', learning_programs.program_code, '.', program_requirements.require_code, '.', subjects.subject_code)`.as('subject_code')
+    ])
     .where("require_id", "=", requireId)
     .execute();
   return data;

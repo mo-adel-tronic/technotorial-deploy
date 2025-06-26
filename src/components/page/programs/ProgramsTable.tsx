@@ -74,11 +74,6 @@ export default function ProgramsTable({ data }: Props) {
     ],
     actions: [
       {
-        type: "copy",
-        copiedKey: "program_code",
-        copiedText: "نسخ كود البرنامج",
-      },
-      {
         type: "navigate",
         link: {
           type: "view",

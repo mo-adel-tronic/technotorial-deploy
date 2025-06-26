@@ -71,11 +71,11 @@ export default function DepartmentTable({ data }: Props) {
       },
     ],
     actions: [
-      {
-        type: "copy",
-        copiedKey: "code",
-        copiedText: "نسخ كود القسم",
-      },
+      // {
+      //   type: "copy",
+      //   copiedKey: "code",
+      //   copiedText: "نسخ كود القسم",
+      // },
       {
         type: "navigate",
         link: {

@@ -76,11 +76,6 @@ export default function SubjectTable({ data, programId, reqId }: Props) {
     ],
     actions: [
       {
-        type: "copy",
-        copiedKey: "subject_code",
-        copiedText: "نسخ كود المقرر",
-      },
-      {
         type: "navigate",
         link: {
           type: "view",

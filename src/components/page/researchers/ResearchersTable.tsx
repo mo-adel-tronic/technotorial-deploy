@@ -99,26 +99,6 @@ export default function ResearcherTable({ data }: Props) {
     ],
     actions: [
       {
-        type: "copy",
-        copiedKey: "student_code",
-        copiedText: "نسخ كود الباحث",
-      },
-      {
-        type: "copy",
-        copiedKey: "national_n",
-        copiedText: "نسخ الرقم القومي",
-      },
-      {
-        type: "copy",
-        copiedKey: "phone",
-        copiedText: "نسخ رقم الهاتف",
-      },
-      {
-        type: "copy",
-        copiedKey: "nation_phone",
-        copiedText: "نسخ رقم الهاتف الدولي",
-      },
-      {
         type: "navigate",
         link: {
           type: "view",

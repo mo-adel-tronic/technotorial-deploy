@@ -3,12 +3,12 @@ import SubjectTable from "@/components/page/requirements/SubjectTable";
 import ViewBox from "@/components/shared/ViewBox";
 import { RoutesName } from "@/constants/RoutesName";
 import { fetchRequirementById } from "@/features/requirements/RequirementRepo";
-import { fetchSubjectByReq } from "@/features/subjects/SubjectRepo";
+import { fetchSubjectByReqWithFullCode } from "@/features/subjects/SubjectRepo";
 
 export default async function RequirementView({params} : {params: Promise<{programsid: number, reqid: number}>}) {
     const {programsid, reqid} = await params
     const requirement = await fetchRequirementById(reqid);
-    const subjects = await fetchSubjectByReq(reqid)
+    const subjects = await fetchSubjectByReqWithFullCode(reqid)
   return (
     <>
     <HeaderBanner title='بيانات المتطلب' linkCreate={{

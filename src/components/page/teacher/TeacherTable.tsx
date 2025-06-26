@@ -82,11 +82,6 @@ export default function TeacherTable({ data }: Props) {
     ],
     actions: [
       {
-        type: "copy",
-        copiedKey: "email",
-        copiedText: "نسخ البريد الإلكتروني",
-      },
-      {
         type: "navigate",
         link: {
           type: "view",
