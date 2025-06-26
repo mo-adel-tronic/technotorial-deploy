@@ -1,0 +1,21 @@
+{
+  "name": "Techno Torial",
+  "short_name": "Techno Torial",
+  "description": "منصة Techno Torial لإدارة بيانات الدراسات العليا، تدعم الباحثين والمعلمين وتوفر لهم المعلومات والأدوات اللازمة لتسهيل العمليات الأكاديمية.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/images/globals/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/globals/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
