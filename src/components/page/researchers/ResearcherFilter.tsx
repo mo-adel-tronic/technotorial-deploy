@@ -83,15 +83,15 @@ export default function ResearcherFilter({ researchers, onFilterChange }: Props)
       </div>
       
       {/* Results count */}
-      <div className="text-sm text-muted-foreground">
+      <div className="text-sm text-app-text my-2 font-bold">
         {searchTerm.trim() ? (
           <span>
-            تم العثور على <span className="font-medium text-foreground">{resultCount}</span> باحث
+            تم العثور على <span className="font-medium text-app-primary">{resultCount}</span> باحث
             {resultCount !== 1 && 'ين'}
           </span>
         ) : (
           <span>
-            إجمالي الباحثين: <span className="font-medium text-foreground">{resultCount}</span>
+            إجمالي الباحثين: <span className="font-medium text-app-primary">{resultCount}</span>
           </span>
         )}
       </div>
