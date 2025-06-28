@@ -3,7 +3,7 @@
 import { ResearcherDetails } from "@/db/types"
 import { Input } from "@/components/ui/input"
 import { Search, X } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 
 interface Props {
     researchers: ResearcherDetails[]
@@ -26,28 +26,32 @@ export default function ResearcherFilter({ researchers, onFilterChange }: Props)
     onFilterChange(filtered)
   }, [searchTerm, researchers, onFilterChange])
 
+  const clearSearch = useCallback(() => {
+    setSearchTerm("")
+  }, [])
+
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Ctrl+Shift+K to focus search (avoiding browser conflict)
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'K') {
         e.preventDefault()
-        inputRef.current?.focus()
+        e.stopPropagation()
+        setTimeout(() => {
+          inputRef.current?.focus()
+        }, 0)
       }
       
       // Escape to clear search
       if (e.key === 'Escape' && searchTerm) {
+        e.preventDefault()
         clearSearch()
       }
     }
 
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [searchTerm])
-
-  const clearSearch = () => {
-    setSearchTerm("")
-  }
+    document.addEventListener('keydown', handleKeyDown, true)
+    return () => document.removeEventListener('keydown', handleKeyDown, true)
+  }, [searchTerm, clearSearch])
 
   const resultCount = searchTerm.trim() 
     ? researchers.filter(researcher =>
