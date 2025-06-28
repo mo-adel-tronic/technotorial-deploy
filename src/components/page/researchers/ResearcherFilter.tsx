@@ -12,35 +12,25 @@ interface Props {
 
 export default function ResearcherFilter({ researchers, onFilterChange }: Props) {
   const [searchTerm, setSearchTerm] = useState("")
-  const [isSearching, setIsSearching] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    setIsSearching(true)
-    
-    // Add a small delay for better UX when typing
-    const timeoutId = setTimeout(() => {
-      if (!searchTerm.trim()) {
-        onFilterChange(researchers)
-        setIsSearching(false)
-        return
-      }
+    if (!searchTerm.trim()) {
+      onFilterChange(researchers)
+      return
+    }
 
-      const filtered = researchers.filter(researcher =>
-        researcher.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
-      )
-      onFilterChange(filtered)
-      setIsSearching(false)
-    }, 150)
-
-    return () => clearTimeout(timeoutId)
+    const filtered = researchers.filter(researcher =>
+      researcher.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
+    )
+    onFilterChange(filtered)
   }, [searchTerm, researchers, onFilterChange])
 
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ctrl+K to focus search
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      // Ctrl+Shift+K to focus search (avoiding browser conflict)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'K') {
         e.preventDefault()
         inputRef.current?.focus()
       }
@@ -72,17 +62,15 @@ export default function ResearcherFilter({ researchers, onFilterChange }: Props)
         <Input
           ref={inputRef}
           type="text"
-          placeholder="البحث عن باحث... (Ctrl+K)"
+          placeholder="البحث عن باحث... (Ctrl+Shift+K)"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="pl-10 pr-10 h-10"
-          disabled={isSearching}
         />
         {searchTerm && (
           <button
             onClick={clearSearch}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            disabled={isSearching}
             title="مسح البحث (Esc)"
           >
             <X className="h-4 w-4" />
