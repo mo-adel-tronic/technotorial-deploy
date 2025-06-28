@@ -6,7 +6,7 @@ import { ResearcherDetails } from "@/db/types";
 import { fetchAllResearchersDetails } from "@/features/researchers/ResearcherRepo";
 import { Suspense } from "react";
 
-export default async function Researcher() {
+export default function Researcher() {
   return <Suspense fallback={<LoadingPage />}>
     <ResearcherLoaded />
   </Suspense>

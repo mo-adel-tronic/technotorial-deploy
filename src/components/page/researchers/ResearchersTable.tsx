@@ -7,13 +7,14 @@ import { RoutesName } from "@/constants/RoutesName";
 import { useRevalidate } from "@/hooks/revalidate";
 import { type ColumnDef, type Table as TableType } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { ResearcherDetails } from "@/db/types";
 import {
   deleteResearcher,
   deleteBulkResearchers,
 } from "@/features/researchers/ResearcherRepo";
+import ResearcherFilter from "./ResearcherFilter";
 
 interface Props {
   data: ResearcherDetails[];
@@ -24,8 +25,15 @@ export default function ResearcherTable({ data }: Props) {
   const [rowToDelete, setRowToDelete] = useState<ResearcherDetails | null>(null);
   const [researcherTable, setResearcherTable] =
     useState<TableType<ResearcherDetails> | null>(null);
+  const [filteredData, setFilteredData] = useState<ResearcherDetails[]>(data);
   const router = useRouter();
   const { revalidate } = useRevalidate();
+
+  // Update filtered data when original data changes
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
+
   const confirmBulkDelete = async () => {
     let res: {
       success: boolean;
@@ -128,9 +136,15 @@ export default function ResearcherTable({ data }: Props) {
 
   return (
     <div>
+      {/* Search Filter */}
+      <ResearcherFilter 
+        researchers={data} 
+        onFilterChange={setFilteredData} 
+      />
+
       {/* Table */}
       <AppTable<ResearcherDetails>
-        data={data}
+        data={filteredData}
         columns={columns}
         BulkActions={handleBulkDelete}
       />
