@@ -1,4 +1,7 @@
 User-agent: *
-Allow: /
+Disallow: /dashboard
+Disallow: /forbidden
+Disallow: /auth
+Disallow: /*?*access_token=*
 
 Sitemap: https://technotorial.com/sitemap.xml
