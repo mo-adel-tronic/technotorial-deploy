@@ -7,6 +7,8 @@ import { getServerSession } from "next-auth"
 import SignoutBtn from "@/components/page/dashboard/SignoutBtn";
 import { headers } from "next/headers";
 import ForbiddenPage from "../forbidden/page";
+import { redirect } from "next/navigation";
+import { RoutesName } from "@/constants/RoutesName";
 
 export const metadata: Metadata = {
   title: "لوحة التحكم",
@@ -24,14 +26,14 @@ export default async function DashboardLayout({
         && !session.user.jobs.includes('مسؤل') 
         && !session.user.jobs.includes('عضو لجنة')
         && !fullUrl.includes('subdashboard')) {
-            return <ForbiddenPage />
+            redirect(RoutesName.FORBIDDEN)
     }
     if(
         session?.user.jobs 
         && !session.user.jobs.includes('مسؤل') 
         && ( fullUrl.includes('department') || fullUrl.includes('teacher') || fullUrl.includes('programs') )
     ) {
-            return <ForbiddenPage />
+            redirect(RoutesName.FORBIDDEN)
     }
     if(session?.accessToken && session?.user.jobs) {
         return (
