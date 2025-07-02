@@ -6,7 +6,6 @@ import { authOptions } from "@/features/auth/AuthOptions"
 import { getServerSession } from "next-auth"
 import SignoutBtn from "@/components/page/dashboard/SignoutBtn";
 import { headers } from "next/headers";
-import ForbiddenPage from "../forbidden/page";
 import { redirect } from "next/navigation";
 import { RoutesName } from "@/constants/RoutesName";
 
